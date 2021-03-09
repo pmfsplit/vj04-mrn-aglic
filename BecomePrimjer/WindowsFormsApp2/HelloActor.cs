@@ -7,15 +7,17 @@ namespace WindowsFormsApp2
     {
         int br = 0;
         Label _label;
-        public HelloActor(Label label)
+        public HelloActor()
         {
-            _label = label;
             NeLogiranoPonasanje();
         }
 
         private void NeLogiranoPonasanje()
         {
-            Receive<Start>(x => _label.Text = "Ovdje ce se ispisat rezultat...");
+            Receive<Start>(x => {
+                _label = x.Label;
+                _label.Text = "Ovdje ce se ispisat rezultat...";
+            });
             Receive<Message>(x =>
             {
                 br++;

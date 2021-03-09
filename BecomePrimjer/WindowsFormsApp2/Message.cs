@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp2
+﻿using System.Windows.Forms;
+
+namespace WindowsFormsApp2
 {
     public class Message
     {
@@ -9,6 +11,13 @@
         }
     }
 
-    public class Start { }
+    public class Start 
+    {
+        public Label Label { get; }
+        public Start(Label label)
+        {
+            Label = label;
+        }
+    }
     public class Logout { }
 }

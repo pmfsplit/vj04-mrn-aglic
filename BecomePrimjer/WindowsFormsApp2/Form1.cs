@@ -19,11 +19,11 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
 
-            Props props = Props.Create(() => new HelloActor(lbl))
+            Props props = Props.Create(() => new HelloActor())
                 .WithDispatcher("akka.actor.synchronized-dispatcher");
 
             _actor = Program.System.ActorOf(props);
-            _actor.Tell(new Start());
+            _actor.Tell(new Start(lbl));
         }
 
         private void btnPosalji_Click(object sender, EventArgs e)
