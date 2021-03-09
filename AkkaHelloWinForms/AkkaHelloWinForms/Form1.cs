@@ -19,7 +19,7 @@ namespace AkkaHelloWinForms
         {
             InitializeComponent();
 
-            Props props = Props.Create(() => new GreeterActor(label1))
+            Props props = Props.Create(() => new GreeterActor(label1, label2))
                 .WithDispatcher("akka.actor.synchronized-dispatcher");
             actor = Program.System.ActorOf(props);
         }
