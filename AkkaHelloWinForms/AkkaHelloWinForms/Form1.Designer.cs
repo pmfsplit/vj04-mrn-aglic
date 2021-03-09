@@ -41,6 +41,7 @@ namespace AkkaHelloWinForms
             this.btnPosaljiPoruku.TabIndex = 0;
             this.btnPosaljiPoruku.Text = "Posalji";
             this.btnPosaljiPoruku.UseVisualStyleBackColor = true;
+            this.btnPosaljiPoruku.Click += new System.EventHandler(this.btnPosaljiPoruku_Click);
             // 
             // label1
             // 

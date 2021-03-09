@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Akka.Actor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,20 @@ namespace AkkaHelloWinForms
 {
     public partial class Form1 : Form
     {
+        IActorRef actor;
+
         public Form1()
         {
             InitializeComponent();
+
+            Props props = Props.Create(() => new GreeterActor(label1))
+                .WithDispatcher("akka.actor.synchronized-dispatcher");
+            actor = Program.System.ActorOf(props);
         }
 
+        private void btnPosaljiPoruku_Click(object sender, EventArgs e)
+        {
+            actor.Tell(new Messages.Write("Hello from actor"));
+        }
     }
 }
