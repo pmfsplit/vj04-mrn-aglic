@@ -11,7 +11,19 @@ namespace AkkaHelloWinForms
     {
         public GreeterActor(Label label)
         {
-            Receive<Messages.Write>(x => label.Text = x.Content);
+            Receive<Messages.Add>(x => CreateWorker(x));
+            Receive<Messages.Write>(x => {
+                label.Text = x.Content;
+                Sender.Tell(PoisonPill.Instance);
+                //Context.Stop(Sender);
+            });
+        }
+
+        private void CreateWorker(Messages.Add msg)
+        {
+            var props = Props.Create(() => new ComputationActor());
+            var child = Context.ActorOf(props);
+            child.Tell(msg);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace AkkaHelloWinForms
 
         private void btnPosaljiPoruku_Click(object sender, EventArgs e)
         {
-            actor.Tell(new Messages.Write("Hello from actor"));
+            actor.Tell(new Messages.Add(5, 4));
         }
     }
 }
